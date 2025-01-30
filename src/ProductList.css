@@ -59,6 +59,15 @@ body {
     justify-content: center;
 }
 
+.product-category{
+    padding: 20px;
+    width: 100%;
+
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+}
+
 /* Product Card */
 .product-card {
     flex: 0 0 calc(33.33% - 20px); /* Adjust width for 3 cards per row with 20px gap */
@@ -109,6 +118,11 @@ body {
 
 .product-button:hover {
     background-color: #c0392b;
+}
+
+.product-button.added-to-cart {
+    background-color: grey;
+    /* Grey when product is added */
 }
 
 /* Pseudo-elements - Sale badge */
@@ -165,11 +179,14 @@ body {
     display: flex;
 }
 .cart_quantity_count{
-    margin-top: 16px;
-    /* background-color: red; */
-    margin-left: 27px;
     position: absolute;
-    font-size: 29px;
+    top: 35px;
+
+    width: 68px;
+    height: 30px;
+
+    font-size: 25px;
+    text-align: center;
 
 }
 .plantname_heading{

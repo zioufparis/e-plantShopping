@@ -9,27 +9,53 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- 
+    let totalAmount = 0;
+
+    cart.forEach((item) => {
+      totalAmount += parseInt(item.cost.replace('$','')) * item.quantity; // was $20 -> remove $ char and parseInt
+    })
+
+    return totalAmount;
   };
 
+  // return to plant listing page
   const handleContinueShopping = (e) => {
-   
+    onContinueShopping(e);
   };
 
-
+  // alert user that functionality will be implemented
+  const handleCheckoutShopping = (e) => {
+    alert('Functionality to be added for future reference');
+  };
 
   const handleIncrement = (item) => {
+    const itemIncr = {...item};
+    itemIncr.quantity++;
+    dispatch(updateQuantity(itemIncr));
   };
 
   const handleDecrement = (item) => {
-   
+    const itemDecr = {...item};
+    // if only one in cart remove it
+    if (itemDecr.quantity == 1){
+      dispatch(removeItem(itemDecr));
+    }else{
+      itemDecr.quantity--;
+      dispatch(updateQuantity(itemDecr));
+    }
   };
 
   const handleRemove = (item) => {
+    const itemToRemove = {...item};
+    dispatch(removeItem(itemToRemove));
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    let totalAmount = 0;
+    totalAmount = item.quantity * parseInt(item.cost.replace('$',''));
+    
+    return totalAmount;
   };
 
   return (
@@ -57,12 +83,10 @@ const CartItem = ({ onContinueShopping }) => {
       <div className="continue_shopping_btn">
         <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1"onClick={(e) => handleCheckoutShopping(e)}>Checkout</button>
       </div>
     </div>
   );
 };
 
 export default CartItem;
-
-
